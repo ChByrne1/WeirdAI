@@ -21,8 +21,8 @@ Read the markdown explanation for each section and add the markdown answers to q
 ## Part 2: Application
 
 Read the application code and comments in the file *refinement.py*.
-
 Complete the # TODO tasks listed.  
+
 Suggested order:
 - Complete get_score
 - Complete build_refinement_prompt
@@ -47,7 +47,3 @@ python -m pytest tests/test_refinement.py
 5. What are the advantages and disadvantages of stopping after the first failed improvement?
 6. What could happen if the model is repeatedly asked to improve a song for too many iterations?
 7. How might best-of-N generation and self-refinement be combined in a larger AI application?
-
-Take a screenshot of your completed notebook activities and your tests passing.  Put these in your Word document along with your answers to the reflection questions.
-
-Submit your document and a zip file of your current project as two separate attachments.

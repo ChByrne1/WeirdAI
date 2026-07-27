@@ -1,4 +1,4 @@
-# Assignment 10: Evaluating Weird AI with Rhyme and Structure Verifiers
+# Lesson 10: Evaluating Weird AI with Rhyme and Structure Verifiers
 
 ## Part 1: Notebook
 

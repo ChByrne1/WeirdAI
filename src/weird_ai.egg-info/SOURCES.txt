@@ -1,0 +1,16 @@
+README.md
+pyproject.toml
+src/weird_ai/__init__.py
+src/weird_ai/config.py
+src/weird_ai/dataset.py
+src/weird_ai/evaluate.py
+src/weird_ai/generate.py
+src/weird_ai/model.py
+src/weird_ai/refinement.py
+src/weird_ai/rhyme_tools.py
+src/weird_ai/tokenizer.py
+src/weird_ai/train.py
+src/weird_ai.egg-info/PKG-INFO
+src/weird_ai.egg-info/SOURCES.txt
+src/weird_ai.egg-info/dependency_links.txt
+src/weird_ai.egg-info/top_level.txt

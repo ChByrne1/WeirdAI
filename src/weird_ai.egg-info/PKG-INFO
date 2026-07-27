@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: weird-ai
+Version: 0.1.0
+Summary: Weird AI parody lyric generator
+Requires-Python: >=3.10

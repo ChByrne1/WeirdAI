@@ -1,0 +1,233 @@
+"""
+Pretrained model helpers for Weird AI.
+
+Lesson 9 introduces students to using an already-trained language model for
+text generation. Earlier lessons built many of the pieces from scratch. In this
+lesson, students use a pretrained model so they can focus on the complete
+inference pipeline:
+
+    text prompt -> tokenizer -> token IDs -> model -> generated token IDs -> text
+
+The functions in this file are intentionally scaffolded. Complete the TODO
+sections, then run:
+
+    python -m pytest tests/test_pretrained.py
+
+The unit tests use small fake model and tokenizer objects, so they do not need
+to download a real Hugging Face model.
+"""
+
+from __future__ import annotations
+
+from typing import Any
+
+import torch
+
+try:
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+except ImportError:  # pragma: no cover - handled by student setup or tests
+    AutoModelForCausalLM = None
+    AutoTokenizer = None
+
+from weird_ai.reasoning import build_reasoning_prompt
+
+
+# This tiny model is useful for early experiments because it downloads quickly.
+# Instructors may replace this with a different model for demonstrations.
+DEFAULT_MODEL_NAME = "sshleifer/tiny-gpt2"
+
+
+def get_device(preferred_device: str | None = None) -> torch.device:
+    """
+    Choose the device that should be used for model inference.
+
+    Args:
+        preferred_device: Optional device name such as "cpu" or "cuda".
+
+    Returns:
+        A torch.device object.
+    """
+
+    # TODO:
+    # 1. If preferred_device is provided, return torch.device(preferred_device).
+    # 2. If CUDA is available, return a CUDA device.
+    # 3. If Apple Silicon MPS is available, return an MPS device.
+    # 4. Otherwise, return a CPU device.
+
+    raise NotImplementedError("Implement get_device.")
+
+
+def load_tokenizer(model_name: str = DEFAULT_MODEL_NAME) -> Any:
+    """
+    Load a pretrained tokenizer.
+
+    Args:
+        model_name: Hugging Face model name or local model path.
+
+    Returns:
+        A tokenizer object loaded with AutoTokenizer.from_pretrained().
+    """
+
+    # TODO:
+    # 1. Check that AutoTokenizer is available. If not, raise an ImportError
+    #    explaining that transformers must be installed.
+    # 2. Load the tokenizer with AutoTokenizer.from_pretrained(model_name).
+    # 3. Some causal language models do not define a padding token. If the
+    #    tokenizer has no pad_token, set tokenizer.pad_token to tokenizer.eos_token.
+    # 4. Return the tokenizer.
+
+    raise NotImplementedError("Implement load_tokenizer.")
+
+
+def load_model(
+    model_name: str = DEFAULT_MODEL_NAME,
+    device: str | torch.device | None = None,
+) -> Any:
+    """
+    Load a pretrained causal language model for text generation.
+
+    Args:
+        model_name: Hugging Face model name or local model path.
+        device: Optional device name or torch.device.
+
+    Returns:
+        A model object in evaluation mode.
+    """
+
+    # TODO:
+    # 1. Check that AutoModelForCausalLM is available. If not, raise an
+    #    ImportError explaining that transformers must be installed.
+    # 2. Resolve the device using get_device().
+    # 3. Load the model with AutoModelForCausalLM.from_pretrained(model_name).
+    # 4. Move the model to the selected device.
+    # 5. Put the model in evaluation mode with model.eval().
+    # 6. Return the model.
+
+    raise NotImplementedError("Implement load_model.")
+
+
+def tokenize_prompt(
+    tokenizer: Any,
+    prompt: str,
+    device: str | torch.device | None = None,
+) -> dict[str, torch.Tensor]:
+    """
+    Convert a text prompt into model input tensors.
+
+    Args:
+        tokenizer: Tokenizer used to encode the prompt.
+        prompt: User prompt text.
+        device: Optional device where tensors should be placed.
+
+    Returns:
+        A dictionary of input tensors that can be passed to model.generate().
+    """
+
+    # TODO:
+    # 1. Tokenize the prompt using tokenizer(prompt, return_tensors="pt").
+    # 2. Move every tensor in the returned dictionary to the selected device.
+    # 3. Return the dictionary.
+
+    raise NotImplementedError("Implement tokenize_prompt.")
+
+
+def decode_generated_tokens(
+    tokenizer: Any,
+    generated_token_ids: torch.Tensor,
+    skip_special_tokens: bool = True,
+) -> str:
+    """
+    Decode generated token IDs into text.
+
+    Args:
+        tokenizer: Tokenizer used to decode token IDs.
+        generated_token_ids: Tensor containing generated token IDs.
+        skip_special_tokens: Whether special tokens should be hidden.
+
+    Returns:
+        The decoded text as a string.
+    """
+
+    # TODO:
+    # 1. If generated_token_ids has a batch dimension, decode only the first row.
+    # 2. Use tokenizer.decode(..., skip_special_tokens=skip_special_tokens).
+    # 3. Return the decoded text.
+
+    raise NotImplementedError("Implement decode_generated_tokens.")
+
+
+def generate_text(
+    prompt: str,
+    model: Any | None = None,
+    tokenizer: Any | None = None,
+    model_name: str = DEFAULT_MODEL_NAME,
+    max_new_tokens: int = 60,
+    temperature: float = 0.8,
+    top_k: int = 50,
+    do_sample: bool = True,
+    device: str | torch.device | None = None,
+) -> str:
+    """
+    Generate text from a prompt using a pretrained causal language model.
+
+    Args:
+        prompt: Text prompt to continue.
+        model: Optional model. If omitted, load_model() should be called.
+        tokenizer: Optional tokenizer. If omitted, load_tokenizer() should be called.
+        model_name: Hugging Face model name or local model path.
+        max_new_tokens: Maximum number of new tokens to generate.
+        temperature: Sampling temperature. Higher values are more random.
+        top_k: Limit sampling to the k most likely next tokens.
+        do_sample: Whether to sample instead of using greedy decoding.
+        device: Optional device name or torch.device.
+
+    Returns:
+        Generated text decoded into a string.
+    """
+
+    # TODO:
+    # 1. Resolve the device with get_device().
+    # 2. If tokenizer is None, call load_tokenizer(model_name).
+    # 3. If model is None, call load_model(model_name, device=device).
+    # 4. Tokenize the prompt with tokenize_prompt().
+    # 5. Call model.generate() inside a torch.no_grad() block.
+    # 6. Pass max_new_tokens, temperature, top_k, do_sample, and pad_token_id.
+    # 7. Decode the generated token IDs with decode_generated_tokens().
+    # 8. Return the decoded generated text.
+
+    raise NotImplementedError("Implement generate_text.")
+
+
+def generate_with_reasoning(
+    user_prompt: str,
+    model: Any | None = None,
+    tokenizer: Any | None = None,
+    model_name: str = DEFAULT_MODEL_NAME,
+    max_new_tokens: int = 100,
+    temperature: float = 0.8,
+    top_k: int = 50,
+    device: str | torch.device | None = None,
+) -> str:
+    """
+    Generate text after wrapping the original prompt in a reasoning prompt.
+
+    Args:
+        user_prompt: Original user request.
+        model: Optional pretrained model.
+        tokenizer: Optional pretrained tokenizer.
+        model_name: Hugging Face model name or local model path.
+        max_new_tokens: Maximum number of new tokens to generate.
+        temperature: Sampling temperature.
+        top_k: Top-k sampling value.
+        device: Optional device name or torch.device.
+
+    Returns:
+        Generated text from the reasoning-structured prompt.
+    """
+
+    # TODO:
+    # 1. Use build_reasoning_prompt(user_prompt) to create a reasoning prompt.
+    # 2. Pass that reasoning prompt to generate_text().
+    # 3. Return the generated text.
+
+    raise NotImplementedError("Implement generate_with_reasoning.")

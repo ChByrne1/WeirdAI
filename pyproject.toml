@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weird-ai"
+version = "0.1.0"
+description = "Weird AI parody lyric generator"
+requires-python = ">=3.10"
+dependencies = [
+    "datasets",
+    "gradio",
+    "jupyter",
+    "matplotlib",
+    "nltk",
+    "notebook",
+    "numpy",
+    "pandas",
+    "pronouncing",
+    "pyarrow",
+    "pytest",
+    "scikit-learn",
+    "tokenizers",
+    "torch",
+    "tqdm",
+    "transformers",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

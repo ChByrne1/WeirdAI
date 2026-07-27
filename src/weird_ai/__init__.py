@@ -1,0 +1,1 @@
+# This makes the weird_ai folder an importable module in other scripts

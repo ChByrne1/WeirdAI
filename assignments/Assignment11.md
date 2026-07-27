@@ -15,7 +15,6 @@ Read the markdown explanation for each section and add the markdown answers to q
 ## Part 2: Application
 
 Read the application code and comments in the file *generator.py*.  
-
 Complete the # TODO tasks listed.  
 
 Make sure all of the files pass the tests in the *test_generator.py* file.  You can run the tests with the following command from the VS Code terminal:
@@ -32,7 +31,3 @@ python -m pytest tests/test_generator.py
 4. Why does Weird AI use scoring instead of majority voting?
 5. What are the risks of selecting a parody using only automated evaluation metrics?
 6. How could this pipeline be combined with the evaluation tools from the previous lesson?
-
-Take a screenshot of your tests passing and include this in your Word document along with your answers to the reflection questions.
-
-Submit your document and a zip file of your current project as two separate attachments.

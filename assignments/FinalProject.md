@@ -1,7 +1,6 @@
-# Final Project: Implement a lightweight rewards based Training
+# Final Project: Implement a lightweight rewards based Training and Deploy the Model
 
 ## Overview
-
 To complete the Weird AI project, you will add the missing reinforcement learning step.  This will be done by implementing a small educational policy-gradient loop:
 1. Generate rollouts
 2. Evaluate rollouts
@@ -10,6 +9,7 @@ To complete the Weird AI project, you will add the missing reinforcement learnin
 5. Compute log probabilities
 6. Compute policy-gradient loss
 7. Update model weights
+Once completed, you will save the model and load it with a web application to run.
 
 ## Part 1: Notebook
 
@@ -177,9 +177,3 @@ If your model loads successfully, you should be able to:
 7. What advantages does separating the model configuration from the model weights provide?
 8. How does creating a deployment package make your AI system easier to distribute, test, and reuse?
 9. How does this deployment process compare to packaging a traditional software application?
-
-Take a screenshot of your completed notebook activities and your tests passing.  
-Take another screenshot of the gradio web interface running with your model loaded and it having generated a response to a prompt.  
-Put these in your Word document along with your answers to the reflection questions.
-
-Submit your document and a zip file of your current project as two separate attachments.

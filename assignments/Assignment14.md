@@ -1,9 +1,7 @@
 # Lesson 14: Reward Diagnostics for Weird AI
 
 ## Overview
-
 This lesson improves the GRPO reinforcement learning pipeline by analyzing training curves, tracking better metrics, preventing reward exploitation, and adding format rewards.
-
 In the previous lesson, you created reward signals and group-relative advantages for Weird AI.  This lesson asks a new question: Are those rewards healthy?  
 
 >
@@ -52,7 +50,3 @@ python -m pytest tests/test_reward_diagnostics.py
 6. What is one way Weird AI might exploit a syllable consistency reward?
 7. Why should reward diagnostics be reviewed before using rewards in model training?
 8. How could human review still be useful even when automated diagnostics look healthy?
-
-Take a screenshot of your completed notebook activities and your tests passing.  Put these in your Word document along with your answers to the reflection questions.
-
-Submit your document and a zip file of your current project as two separate attachments.

@@ -1,6 +1,6 @@
 # Building the Weird AI Transformer Block
 
-## Description
+## Overview
 
 This assignment will implement the remaining building blocks needed to create a transformer block:
 - Layer normalization
@@ -33,12 +33,9 @@ python -m pytest tests/test_transformer.py
 ```
 
 ## Part 3: Reflection Questions
+
 1. Why is layer normalization important?
 2. Why does GPT use GELU instead of ReLU?
 3. Why does the feed-forward network expand to four times the embedding dimension?
 4. What problem do shortcut connections solve?
 5. Why must the transformer block return the same embedding size it receives?
-
-Take a screenshot of the test_transformer.py results after running them and put that in your document along with the answers to the reflection questions. 
-
-Submit your document and a zip file of your current project as two separate attachments.

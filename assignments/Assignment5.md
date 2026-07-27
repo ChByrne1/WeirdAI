@@ -1,5 +1,7 @@
 # Teaching Weird AI to Write Lyrics
 
+## Overview
+
 By the end of this assignment you should be able to:
 - Generate text using Weird AI
 - Calculate cross-entropy loss
@@ -43,8 +45,4 @@ When all tests are passing be sure to check your code into your GitHub repositor
 5. Why do we need both training and validation datasets?
 6. What role does backpropagation play in learning?
 7. Why should model checkpoints be saved during training?
-
-In a Word document, answer the reflection questions. 
-Take a screenshot of your tests passing and include this in your Word document.
-
 Submit your document and a zip file of your current project as two separate attachments.

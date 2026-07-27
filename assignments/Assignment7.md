@@ -3,7 +3,6 @@
 ## Part 1: Notebook
 
 Open the jupyter notebook titled ```07_instruction_finetuning.ipynb```
-
 Read the markdown explanation for each section and add the code implementation described to the notebook.
 
 > Note: Run the notebook cells in order. If something behaves strangely, restart the kernel and run all cells again.

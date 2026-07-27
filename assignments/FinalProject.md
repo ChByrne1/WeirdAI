@@ -1,4 +1,6 @@
-# Final Project: Implement a lightweight rewards based Training and Deploy the Model
+# Final Project: 
+- Implement a lightweight rewards based Training
+- Deploy the Model
 
 ## Overview
 To complete the Weird AI project, you will add the missing reinforcement learning step.  This will be done by implementing a small educational policy-gradient loop:

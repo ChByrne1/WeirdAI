@@ -3,9 +3,7 @@
 ## Overview
 
 This lesson introduces reinforcement learning for reasoning models. The key shift is from *inference-time scaling* to *training-time scaling*.
-
 Previous lessons improved output by spending more compute during generation, using best-of-N generation and self-refinement.
-
 This lesson prepares Weird AI for reinforcement learning by creating reward signals.
 
 ## Part 1: Notebook
@@ -51,8 +49,3 @@ python -m pytest tests/test_rewards.py
 6. What does a negative group-relative advantage mean?
 7. Why might a model learn to "reward hack" Weird AI's rhyme or syllable scorer?
 8. Why is this assignment a preparation step rather than a full reinforcement learning training loop?
-
-
-Take a screenshot of your completed notebook activities and your tests passing.  Put these in your Word document along with your answers to the reflection questions.
-
-Submit your document and a zip file of your current project as two separate attachments.

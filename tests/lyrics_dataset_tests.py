@@ -1,4 +1,4 @@
-from weird_ai.dataset import LyricsDataset
+from src.weird_ai.dataset import LyricsDataset
 
 
 def test_lyrics_dataset_getitem():
@@ -9,3 +9,8 @@ def test_lyrics_dataset_getitem():
 
     assert x.tolist() == [1, 2, 3]
     assert y.tolist() == [2, 3, 4]
+    print(x.tolist())
+    print(y.tolist())
+
+
+test_lyrics_dataset_getitem()

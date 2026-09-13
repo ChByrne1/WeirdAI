@@ -1,6 +1,6 @@
 import torch
 
-from weird_ai.attention import SimpleSelfAttention, SelfAttention, CausalAttention
+from src.weird_ai.attention import SimpleSelfAttention, SelfAttention, CausalAttention
 
 
 def test_simple_self_attention_shape():

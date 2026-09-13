@@ -10,8 +10,17 @@ class LyricsDataset:
         return len(self.tokens) - self.block_size
 
     def __getitem__(self, index):
-        # TODO:
+        x = []
+        y = []
+
         # Get the input/output token sequences
         # Calculate x by grabbing the sublist of tokens starting at the index up to the block_size
         # Calculate y by grabbing the sublist of tokens starting at index + 1 up to block_size + 1
-        pass
+
+        inputs = self.tokens[index:index + self.block_size]
+        outputs = self.tokens[index + 1: index + self.block_size + 1]
+
+        x.append(torch.tensor(inputs))
+        y.append(torch.tensor(outputs))
+
+        return x[index], y[index]

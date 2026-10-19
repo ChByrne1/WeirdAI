@@ -1,2 +1,5 @@
 -e .
 matplotlib
+torch
+setuptools
+python3-distutils

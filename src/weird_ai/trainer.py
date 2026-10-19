@@ -38,12 +38,17 @@ def evaluate_model(
 
     # TODO:
     # 1. Disable gradient tracking with torch.no_grad().
+    with torch.no_grad():
     # 2. Calculate training loss using calc_loss_loader.
+        training_loss = calc_loss_loader(
+            train_loader, model, device, num_batches=eval_iter
+        )
     # 3. Calculate validation loss using calc_loss_loader.
+        validation_loss = calc_loss_loader(
+            val_loader, model, device, num_batches=eval_iter
+        )
     # 4. Return both losses.
-
-    raise NotImplementedError("Implement evaluate_model.")
-
+    return training_loss, validation_loss
 
 def train_model_simple(
     model,
@@ -88,35 +93,50 @@ def train_model_simple(
     tokens_seen = 0
     global_step = -1
 
-    # TODO:
-    # Move model to the selected device.
-
+    # Moves model to the selected device.
+    model = model.to(device)
     for epoch in range(num_epochs):
 
-        # TODO:
-        # Put model in training mode.
-
+        # Puts model in training mode.
+        model.train()
         for input_batch, target_batch in train_loader:
 
-            # TODO:
-            # 1. Reset gradients with optimizer.zero_grad().
-            # 2. Calculate loss for this batch.
-            # 3. Run backpropagation with loss.backward().
-            # 4. Update model weights with optimizer.step().
-            # 5. Update tokens_seen.
+            # 1. Resets gradients with optimizer.zero_grad().
+            optimizer.zero_grad()
+            # 2. Calculates loss for this batch.
+            loss = calc_loss_batch(
+                input_batch,target_batch,model,device,
+            )
+            # 3. Runs backpropagation with loss.backward().
+            loss.backward()
+            # 4. Updates model weights with optimizer.step().
+            optimizer.step()
+            # 5. Updates tokens_seen.
+            tokens_seen += input_batch.numel()
             # 6. Update global_step.
+            global_step += 1
 
-            # TODO:
             # If global_step is divisible by eval_freq:
+            if global_step % eval_freq == 0:
             #   1. Evaluate the model.
+                train_loss, val_loss = evaluate_model(
+                    model, train_loader, val_loader, device, eval_iter)
             #   2. Store train loss, validation loss, and tokens seen.
+                train_losses.append(train_loss)
+                val_losses.append(val_loss)
+                track_tokens_seen.append(tokens_seen)
             #   3. Print progress.
+                print(f"Ep {epoch + 1} (Step {global_step:06d}): "
+                     f"Train loss {train_loss:.3f}, "
+                     f"Val loss {val_loss:.3f}"
+                )
 
-            pass
 
-        # TODO:
         # At the end of each epoch, generate and print a sample.
         # This helps visually inspect whether the model is improving.
+        generate_and_print_sample(
+            model, tokenizer, device, start_context
+        )
 
     return train_losses, val_losses, track_tokens_seen
 
@@ -143,16 +163,22 @@ def save_checkpoint(
         checkpoint_path: Path where checkpoint should be saved.
     """
 
-    # TODO:
-    # Use torch.save to save a dictionary containing:
+    # Uses torch.save to save a dictionary containing:
     #   model_state_dict
     #   optimizer_state_dict
     #   epoch
     #   train_losses
     #   val_losses
     #   track_tokens_seen
+    torch.save({
+        "model_state_dict": model.state_dict(),
+        "optimizer_state_dict": optimizer.state_dict(),
+        "epoch": epoch,
+        "train_losses": train_losses,
+        "val_losses": val_losses,
+        "track_tokens_seen": track_tokens_seen,
+    }, checkpoint_path)
 
-    raise NotImplementedError("Implement save_checkpoint.")
 
 
 def load_checkpoint(
@@ -174,10 +200,14 @@ def load_checkpoint(
         A dictionary containing checkpoint metadata.
     """
 
-    # TODO:
     # 1. Load the checkpoint with torch.load.
+    checkpoint = torch.load(checkpoint_path)
     # 2. Restore the model state.
+    model.load_state_dict(checkpoint["model_state_dict"])
     # 3. Restore the optimizer state.
+    optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
     # 4. Return metadata such as epoch and loss history.
+    checkpoint.pop("model_state_dict")
+    checkpoint.pop("optimizer_state_dict")
+    return checkpoint
 
-    raise NotImplementedError("Implement load_checkpoint.")

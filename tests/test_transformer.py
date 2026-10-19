@@ -1,8 +1,8 @@
 import torch
 
-from weird_ai.layer_norm import LayerNorm
-from weird_ai.feed_forward import GELU, FeedForward
-from weird_ai.transformer import TransformerBlock
+from src.weird_ai.layer_norm import LayerNorm
+from src.weird_ai.feed_forward import GELU, FeedForward
+from src.weird_ai.transformer import TransformerBlock
 
 
 def test_layer_norm_output_shape():

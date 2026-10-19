@@ -4,16 +4,17 @@ import torch.nn as nn
 class LayerNorm(nn.Module):
     def __init__(self, emb_dim):
         super().__init__()
-
-        self.scale = nn.Parameter(torch.ones(emb_dim))
-        self.shift = nn.Parameter(torch.zeros(emb_dim))
+        self.scale=nn.Parameter(torch.ones(emb_dim))
+        self.shift=nn.Parameter(torch.zeros(emb_dim))
 
     def forward(self, x):
 
         # TODO
         # Compute mean
+        mean = x.mean(-1, keepdim=True)
         # Compute variance
+        var = x.var(dim=-1, keepdim=True, unbiased=False)
         # Normalize
+        norm_x = (x - mean) / torch.sqrt(var)
         # Apply scale and shift
-
-        raise NotImplementedError()
+        return self.scale * norm_x + self.shift

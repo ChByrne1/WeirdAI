@@ -56,7 +56,6 @@ def calc_loss_loader(data_loader, model, device, num_batches=None):
     """
     total_loss = 0
 
-    # TODO:
     # 1. Handle an empty data loader.
     if len(data_loader) == 0:
         return float("nan")
@@ -92,7 +91,6 @@ def calculate_perplexity(loss):
         Perplexity value.
     """
 
-    # TODO:
     # Perplexity is exp(loss).
     if type(loss) is not torch.Tensor:
         loss = torch.tensor(loss)

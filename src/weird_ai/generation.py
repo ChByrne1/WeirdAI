@@ -66,7 +66,6 @@ def generate_text_simple(model, input_ids, max_new_tokens, context_size):
         Tensor containing the original input IDs plus generated token IDs.
     """
 
-    # TODO:
     # Repeat max_new_tokens times:
     for _ in range(max_new_tokens):
         # 1. Crop input_ids to the most recent context_size tokens.

@@ -36,7 +36,6 @@ def evaluate_model(
 
     model.eval()
 
-    # TODO:
     # 1. Disable gradient tracking with torch.no_grad().
     with torch.no_grad():
     # 2. Calculate training loss using calc_loss_loader.
@@ -135,7 +134,7 @@ def train_model_simple(
         # At the end of each epoch, generate and print a sample.
         # This helps visually inspect whether the model is improving.
         generate_and_print_sample(
-            model, tokenizer, device, start_context
+            model, tokenizer, device, start_context, context_size
         )
 
     return train_losses, val_losses, track_tokens_seen

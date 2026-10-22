@@ -129,6 +129,8 @@ def train_model_simple(
                      f"Train loss {train_loss:.3f}, "
                      f"Val loss {val_loss:.3f}"
                 )
+                # used to cut training time short to enable bug-testing
+                # break
 
 
         # At the end of each epoch, generate and print a sample.

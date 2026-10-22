@@ -76,7 +76,8 @@ def generate_text_simple(model, input_ids, max_new_tokens, context_size):
         # 3. Select only the logits for the last time step.
         logits = logits[:, -1, :]
         # 4. Use argmax to choose the most likely next token.
-        input_next = torch.argmax(logits, dim=-1)
+        input_next = torch.argmax(logits, dim=-1).unsqueeze(-1)
+
         # 5. Append that token to input_ids.
         input_ids = torch.cat([input_ids, input_next], dim=1)
 

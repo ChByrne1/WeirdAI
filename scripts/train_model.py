@@ -1,5 +1,5 @@
 import torch
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, RandomSampler
 from weird_ai.trainer import train_model_simple
 from weird_ai.dataset import LyricsDataset
 from weird_ai.model import WeirdAIModel
@@ -36,7 +36,7 @@ def main():
     training_loader = DataLoader(
         training_dataset,
         batch_size=batch_size,
-        shuffle=True,
+        sampler=RandomSampler(training_dataset, replacement=True, num_samples=len(training_dataset)),
         drop_last=True,
     )
     validation_loader = DataLoader(
@@ -50,12 +50,10 @@ def main():
     optimizer = torch.optim.Adam(model.parameters(), lr=0.0004, weight_decay=0.1)
 
     # 3. Implement training loop
-    eval_freq = 5
-
     train_losses, val_losses, track_tokens_seen = train_model_simple(
             model, train_loader=training_loader, val_loader=validation_loader,
             optimizer=optimizer, device=device, num_epochs=num_epochs,
-            eval_freq=eval_freq, eval_iter=eval_freq, start_context=training_tokens,
+            eval_freq=500, eval_iter=5, start_context=training_text,
             tokenizer=tokenizer, context_size=context_len
     )
 
